@@ -34,6 +34,8 @@ load_setup:
     jmp load_setup
 ok_load_setup:
     jmpi 0,SETUPSEG
+    
+
 msg1:
     .byte 13,10
     .ascii "hello os world, my name is jx"
