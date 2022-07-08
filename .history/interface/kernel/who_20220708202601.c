@@ -30,7 +30,7 @@ int sys_iam(const char *name)
     //统计输入name字符串的长度
     unsigned int namelen = 0;
     int ret = -1;
-    while (get_fs_byte(name+namelen) != "\0")
+    while (get_fs_byte(name+) != "\0")
     {
         namelen++;
     }
