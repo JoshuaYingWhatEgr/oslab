@@ -37,6 +37,7 @@ int sys_iam(const char *name)
 
     if (namelen > NAMELEN)
     {
+        printK("name length is too long %d", namelen);
         return -(EINVAL);
     }
     else

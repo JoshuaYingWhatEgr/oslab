@@ -20,9 +20,11 @@
 #include <asm/segment.h>
 #include <errno.h>
 
+#include <linux/kernel.h>
+
 #define NAMELEN 23
 
-char userName[NAMELEN + 1];
+char userNames[NAMELEN + 1];
 
 int sys_iam(const char *name)
 {
@@ -37,7 +39,8 @@ int sys_iam(const char *name)
 
     if (namelen > NAMELEN)
     {
-        return -(EINVAL);
+        printK("name length is too long %d", namelen);
+        return -(EINVAL)
     }
     else
     {
@@ -68,12 +71,14 @@ int sys_whoami(const char *name, unsigned int size)
     {
         for (i = 0; i < nameLen; i++)
         {
-            put_fs_byte(userName[i],name+i);
+            put_fs_byte(userName[i], name + i);
         }
-        put_fs_byte("\0",name+i);
+        put_fs_byte("\0", name + i);
         return nameLen;
-    }else {
-        return -(EINVAL);
+    }
+    else
+    {
+        return -(EINVAL)
     }
     return -1;
 }
